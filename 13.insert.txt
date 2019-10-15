@@ -1,0 +1,13 @@
+declare
+ i number := 1;
+ name varchar2(40);
+begin
+ loop
+  name:='&name';
+  insert into employee values(i,name,&salary, '&date');
+  dbms_output.put_line(i);
+  i:=i+1;
+ exit when i>5;
+ end loop;
+end;
+/

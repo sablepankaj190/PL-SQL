@@ -1,0 +1,10 @@
+declare
+empname varchar2(20) := 'Pankaj Sable';
+salary number := 30000;
+begin
+dbms_output.put_line('Hello');
+dbms_output.put_line(empname);
+dbms_output.put_line('Hello it is concatenated' || '  ' || empname);
+dbms_output.put_line('The salary is : ' || salary);
+end;
+/

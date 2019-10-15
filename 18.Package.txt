@@ -1,0 +1,19 @@
+create or replace package packEmpSalary
+as
+procedure proSal;
+end packEmpSalary;
+/
+
+create or replace package body packEmpSalary
+as
+procedure proSal
+as
+empname varchar2(22);
+sal number;
+begin 
+select name, salary into empname, sal from employee where id = 2;
+dbms_output.put_line(empname||' '||sal);
+end proSal;
+end packEmpSalary;
+/
+

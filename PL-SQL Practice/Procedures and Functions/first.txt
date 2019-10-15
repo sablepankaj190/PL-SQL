@@ -1,0 +1,144 @@
+-- Q.1 First Question  
+
+create or replace procedure add_job(jobtitle in jobs.job_title%TYPE, jobname in jobs.job_name%TYPE)
+as
+ title varchar2(10);
+ name varchar2(32);
+begin
+    select  job_title, job_name into title, name from jobs where job_title = jobtitle;
+    if title = jobtitle then
+       update jobs set job_name = jobname where job_title = jobtitle;
+       dbms_output.put_line('The table updated.');
+    end if;
+exception
+  when no_data_found then
+  insert into jobs values(jobtitle, jobname);
+end;
+/
+
+declare
+ title varchar2(20) := '&title';
+ name varchar2(20) := '&name';
+begin
+ add_job(title, name);
+end;
+/
+
+-- Q.2 Second Question
+
+create or replace procedure proDepartment (deptId1 department.dept_id%TYPE, deptId2 department.dept_id%TYPE)
+as
+ dept1Commision department.dept_comm%TYPE;
+ dept2Commision department.dept_comm%TYPE;
+ diff department.dept_comm%TYPE;
+ maxComm department.dept_comm%TYPE :=0 ;
+begin
+ select sum(dept_comm) into dept1Commision from department where dept_id = deptId1;
+ select sum(dept_comm) into dept2Commision from department where dept_id = deptId2;
+ dbms_output.put_line('The total commission of id :' || deptId1 || ' is: ' || dept1Commision);
+ dbms_output.put_line('The total commission of id :' || deptId2 || ' is: ' || dept2Commision);
+ if dept2Commision < dept1Commision then
+   diff := dept1Commision - dept2Commision;
+   dbms_output.put_line('The difference is : '|| diff);     
+ 
+ elsif dept1Commision < dept2Commision then
+   diff := dept2Commision - dept1Commision;
+   dbms_output.put_line('The difference is : '|| diff);
+
+ end if;
+ exception
+    when no_data_found then
+     dbms_output.put_line('Invalid ids, no data found');
+end;
+/
+
+declare
+ deptId1 department.dept_id%TYPE := '&deptId1';
+ deptId2 department.dept_id%TYPE := '&deptId2';
+begin
+ proDepartment(deptId1, deptId2);
+end;
+/
+
+
+-- Q.4 Fourth Question
+
+create or replace function isPrime (num in number)
+ return number
+ as
+ res number;
+ i number;
+ n number;
+begin
+  res := 0;
+  i := 2;
+  n := num;  
+  if (n=1 or n=2 or n=3 or n=5 or n=7) then
+    res := 1;
+    return res;
+ 
+  else
+    for i in 2..7
+    loop
+       if (mod(num, i) = 0) then
+        res := 0;
+        return res;
+       else
+        res :=1; 
+             
+       end if;
+    end loop;   
+  end if;
+return res;
+end;
+/   
+
+declare
+ num number := '&num';
+ res number;
+begin
+ res := isPrime(num);
+ if res = 0 then
+   dbms_output.put_line('The number is not prime.');
+ else
+   dbms_output.put_line('The number is prime.');
+ end if;
+ 
+dbms_output.put_line('The returned value is : ' || res);
+ 
+end;
+/   
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

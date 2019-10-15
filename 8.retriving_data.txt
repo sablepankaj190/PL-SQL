@@ -1,0 +1,13 @@
+declare 
+ emp_hiredate employee.hire_date%TYPE;
+ emp_salary employee.salary%TYPE;
+begin
+ select hire_date, salary
+ into emp_hiredate, emp_salary
+ from employee
+ where id = 2;
+ dbms_output.put_line('The hiring date is : '|| emp_hiredate);
+ dbms_output.put_line('With salary of amount : '|| emp_salary || 'rs.');
+
+end;
+/

@@ -1,0 +1,13 @@
+declare
+ sum_of number :=1;
+ i number:=2;
+begin
+ while i<=11
+ loop
+ dbms_output.put_line('Current sum is: '||sum_of);
+sum_of := sum_of+i;
+i:=i+1;
+ end loop;
+end;
+/
+ 

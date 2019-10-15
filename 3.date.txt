@@ -1,0 +1,6 @@
+declare
+dob date := sysdate;
+begin
+dbms_output.put_line('Todays date is: ' || dob);
+end;
+/

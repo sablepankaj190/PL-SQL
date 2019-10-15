@@ -1,0 +1,72 @@
+if then endif;
+if then endif; elsif then endelsif; 
+nested if then elsif then
+case 
+  when then
+  when then
+  else default
+endcase;
+
+-- if elsif else conditions
+declare 
+ marks number;
+begin
+ if marks>=75 then
+ dbms_output.put_line('You have cleared the test with marks:'|| marks);
+ elsif (marks>70 and marks<75) then
+ dbms_output.put_line('You have secured one more attempt for assessment');
+ else 
+ dbms_output.put_line('You have not cleared the assessment');
+ end if;
+end;
+/
+
+-- case expression in pl/sql
+declare 
+ grade varchar2(10) := '&grade';
+ performance varchar2(30);
+begin
+ performance := case grade
+ when 'A' then 'Excellent work'
+ when 'B' then 'Nice, Keep it up'
+ when 'C' then 'Improve a bit'
+ when 'D' then 'Poor performance'
+ else  'can do better'
+ end;
+ dbms_output.put_line('Your performance for this appraisal is : ' || performance);
+end;
+/
+
+--case 2
+declare 
+ grade char(1) := UPPER('&grade');
+ performance varchar2(30);
+begin
+ performance := 
+ case 
+ when grade='A' then 'Excellent work'
+ when grade IN('B','C','D') then 'Nice, Keep it up'
+ else  'No such grade'
+ end;
+ dbms_output.put_line(chr(10)||'Grade : '|| grade||chr(10)|| 'Appraisal : '|| performance);
+end;
+/
+
+--case 3
+declare
+  sal employee.salary%TYPE;
+begin 
+  select salary into sal from employee where id = 1;
+  dbms_output.put_line('The salary is:'||sal);
+  case 
+    when sal>25000 then
+    dbms_output.put_line('Salary package is above 3 LPA.');
+    update employee set salary = salary + 1000;
+    when sal<25000 then
+    dbms_output.put_line('Salary package is below 3 LPA.');
+    update employee set salary = salary + 500;
+ end case;
+end;
+/ 
+
+ 

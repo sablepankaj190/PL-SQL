@@ -1,0 +1,33 @@
+declare
+ insert_excep exception;
+ pragma exception_init (insert_excep, -01400);
+begin
+ insert into employee (id, name, salary) values (280, 'Atul', null);
+ Exception
+ when insert_excep then
+ dbms_output.put_line('Insert operation failed');
+ dbms_output.put_line(sqlerrm);
+ dbms_output.put_line(sqlcode);
+end;
+/
+
+
+
+-- User defined exception
+declare
+ empname varchar2(22);
+ sal number;
+ salaryException exception;
+begin
+ select name, salary into empname, sal from employee where id = 1;
+ if(sal > 10000) then
+   raise salaryException;
+ 
+ else
+ dbms_output.put_line(sal);
+ end if;
+  Exception
+   when salaryException then
+   dbms_output.put_line('You are not eligible for bonus.');
+end;
+/

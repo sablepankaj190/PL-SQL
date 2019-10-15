@@ -1,0 +1,13 @@
+begin <<outer>>
+ declare
+  prodid number := 22;
+ begin  
+     declare
+      prodid number := 11;
+     begin
+      dbms_output.put_line('Inner variable : ' || prodid);
+      dbms_output.put_line('Outer variable : ' || outer.prodid);
+     end;
+ end;
+end outer;
+/

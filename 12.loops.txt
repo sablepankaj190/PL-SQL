@@ -1,0 +1,37 @@
+--basic loop
+
+declare
+ num number := 1;
+begin
+loop
+dbms_output.put_line(num);
+num:=num+1;
+exit when num>4;
+end loop;
+end;
+/
+
+-- while loop
+
+declare
+num number := 1;
+begin
+while num<=5
+loop
+dbms_output.put_line(num);
+num:=num+1;
+end loop;
+end;
+/
+
+-- for loop
+declare
+i number := 1;
+num number := 1;
+begin
+for i in 1..10
+loop
+dbms_output.put_line(i);
+end loop;
+end;
+/

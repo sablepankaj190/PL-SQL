@@ -1,0 +1,11 @@
+declare
+ base_num number;
+ exp_num number;
+ result number;
+begin
+ base_num := '&base_num';
+ exp_num := '&exp_num';
+ result := power(base_num, exp_num);
+ dbms_output.put_line(chr(10)||base_num || ' to the power ' || exp_num || ' is : ' || result);
+end;
+/

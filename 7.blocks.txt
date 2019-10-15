@@ -1,0 +1,19 @@
+declare
+  siz number;
+   description varchar2(50) := 'Hello, there it is just a random string extra.';
+   low varchar2(50);
+begin
+  declare
+       len_desc number;
+      begin 
+       len_desc := length(description);
+       dbms_output.put_line('Inside inner block:'||len_desc);
+       dbms_output.put_line('description');
+  end;
+ siz := LENGTH(description);
+ low := UPPER(description);
+ 
+ dbms_output.put_line(low);
+ dbms_output.put_line('The length of the desc variable is:' || siz);
+end;
+/

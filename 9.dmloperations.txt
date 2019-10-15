@@ -1,0 +1,11 @@
+declare
+ bonus employee.salary%TYPE;
+begin
+  bonus := 800;
+  insert into employee values(3, 'Shivam', 22500, '10-JUN-19');
+  /* update employee 
+  set salary = salary + bonus
+  where id = 1;*/
+  --delete from employee where id = 3;
+end;
+/

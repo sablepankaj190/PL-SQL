@@ -1,0 +1,11 @@
+declare
+ id number :=2;
+ msg varchar2(32);
+ date_written date;
+begin
+ msg := 'This is the first program';
+ date_written := sysdate;
+ insert into temp values (id, msg, date_written);
+ dbms_output.put_line('Row '|| id ||' inserted.');
+end;
+/

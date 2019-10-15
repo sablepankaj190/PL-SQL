@@ -1,0 +1,7 @@
+declare 
+ MyName varchar2(20) := 'John';
+begin
+ MyName := 'Pankaj';
+ dbms_output.put_line('My name is: ' || MyName);
+end;
+/

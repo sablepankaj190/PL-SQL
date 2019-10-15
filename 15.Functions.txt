@@ -1,0 +1,28 @@
+create or replace function funATM(bonus in number)
+return number
+as
+ empname varchar2(22);
+ sal number;
+ begin
+select name, salary into empname, sal from employee where id = 1;
+dbms_output.put_line('Name is '||empname||' '||'Salary is '|| sal);
+if(sal>10000) then
+sal:=sal+bonus;
+dbms_output.put_line('Your bonus is:' || sal);
+else
+dbms_output.put_line('Not eligible for bonus.');
+end if;
+return sal;
+end funATM;
+/
+
+declare
+ temp number;
+ res number;
+begin
+ temp := funATM(5000);
+ dbms_output.put_line('Returned value is: '||temp);
+ select funATM(2000) into res from employee where id = 2;
+ dbms_output.put_line('The result is:'||res);
+end;
+/

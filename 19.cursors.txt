@@ -1,0 +1,80 @@
+--Normal Cursors
+
+declare
+ cursor cursor_emp is
+ select name from employee;
+ empname varchar2(22);
+ i number := 1;
+ begin
+  open cursor_emp;
+  loop
+  fetch cursor_emp into empname;
+  dbms_output.put_line( i ||' : '|| empname);
+  i :=i+1;
+  exit when cursor_emp%notFound;
+  end loop;
+  close cursor_emp;
+end;
+/
+
+--Cursors with multiple column
+
+declare
+ cursor cursor_emp is
+ select id, name, salary from employee;
+ empname varchar2(22);
+ sal employee.salary%TYPE;
+ empId employee.salary%TYPE;
+
+ i number := 1;
+ begin
+  dbms_output.put_line('Id: Name   : Salary');
+  open cursor_emp;
+  loop
+  fetch cursor_emp into empid, empname, sal;
+  exit when cursor_emp%notFound;
+  dbms_output.put_line( empid ||' : '|| empname|| ' : '|| sal);
+  i :=i+1;
+  
+  end loop;
+  close cursor_emp;
+end;
+/
+
+--Cursors with rowtype 
+
+declare
+ cursor cursor_emp is
+ select * from employee;
+ 
+ emp_rec cursor_emp%rowtype;
+ begin
+  dbms_output.put_line('Id: Name   : Salary');
+  open cursor_emp;
+  loop
+  fetch cursor_emp into emp_rec;
+  exit when cursor_emp%notFound;
+  dbms_output.put_line( emp_rec.id ||' : '|| emp_rec.name|| ' : '|| emp_rec.salary);
+ 
+  end loop;
+  close cursor_emp;
+end;
+/
+
+--Cursors for loop
+declare
+ cursor cursor_emp is select * from employee;
+ 
+ i number := 1;
+ begin
+  dbms_output.put_line('Id: Name   : Salary');
+  for emp in cursor_emp
+  loop
+  
+  dbms_output.put_line( emp.id ||' : '|| emp.name|| ' : '|| emp.salary);
+  i :=i+1;
+  
+  end loop;
+  
+end;
+/

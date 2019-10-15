@@ -1,0 +1,39 @@
+-- Too many rows
+declare
+ sal number;
+ empname varchar2(22);
+begin
+ select name, salary into empname, sal from employee;
+ dbms_output.put_line('Name' || empname || 'Salary is:' || sal);
+ Exception
+ when too_many_rows then
+ dbms_output.put_line('Too many records are fetched');
+end;
+/
+
+-- Data not found.
+declare
+ sal number;
+ empname varchar2(22);
+begin
+ select name, salary into empname, sal from employee where id =3;
+ dbms_output.put_line('Name' || empname || 'Salary is:' || sal);
+ Exception
+ when no_data_found then
+ dbms_output.put_line('Data not found.');
+end;
+/
+
+--Divide by zero.
+declare
+ total number;
+ division number; 
+begin
+ total := 100;
+ division := total / 0;
+ 
+ Exception
+  when zero_divide then
+  dbms_output.put_line('Divided by zero.');
+end;
+/

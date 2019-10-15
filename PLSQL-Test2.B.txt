@@ -1,0 +1,205 @@
+ 
+
+1) What will be the output of the following program
+          
+         Table Employ
+     
+   ENAME  EID      EDATE          ESAL
+   Aditya  1     29-Aug-1997      30000
+  Sunil    2     20-Aug-1995      25000
+ Anurag    3     29-Mar-1998      34000
+
+
+DECLARE
+  sal number;
+  id number :=1;  
+BEGIN
+select salary into sal from employee where id :=id;
+dbms_output.put_line('salary is '||sal);
+
+
+END;
+/
+
+1)30000
+2)34000
+3)Compilation error
+4) None of these
+
+
+ 
+
+2. if we perform AND operation of null and False what will be output
+
+1. null
+2. false
+3. true
+4. error
+
+ 
+
+3. output of following 
+declare 
+loop_variable number := 1;
+
+begin
+loop
+dbms_output.put_line(loop_variable);
+loop_variable := loop_variable + 1;
+exit when loop_variable >=2020;
+end loop;
+end;
+/
+
+1. loop will run for 2020 times.
+2. loop will run for 2021 times.
+3. loop will run for 2019 times.
+4. compilation error.
+
+  
+
+4.What is output of the following code?
+DECLARE
+   x number := 4;
+BEGIN
+   LOOP
+      dbms_output.put_line(x); 
+      x := x + 1;/5/6
+      exit WHEN x > 5;
+   END LOOP;
+      dbms_output.put_line(x);
+END;
+/
+(a)4
+   5
+   6
+(b)4
+   5
+(c)4
+(d)None of these
+
+ 
+
+5. what is output
+
+declare
+salary number;
+
+begin
+select max(salary) into salary from employee;
+dbms_output.put_line(salary);
+end;
+/ 
+1. max salary will be printed .
+2. cannot use group function .
+3. compilation error.
+4. none.
+
+ 
+
+6. output of following 
+
+declare
+eid number:= 3;
+ename varchar2(20);
+begin
+case eid
+when 1 then select name into ename from emp where id=1;
+when 2 then select name into ename from emp where id=2;
+when 3 then select name into ename from emp where id=3;
+when 4 then select name into ename from emp where id=4;
+else 'Invalid number'
+end case;
+dbms_output.put_line('name is:'||ename);
+end;
+/
+
+a. Complilation error
+b. name is:name at id=3
+c. invalid number
+d. none of these
+ 
+
+7. what will be output
+declare
+dob date := 24-AUG-19;
+begin
+dob := sysdate;
+dbms_output.put_line(dob);
+end;
+/
+
+a. 24-AUG-19
+b. 29-AUG-19
+c. 29/08/2019
+d. Compilation error
+
+ 
+
+8. what will be output
+declare
+base number := 2;
+num number := 3;
+ans number := 1;
+a number:=1;
+begin
+while a<=num
+loop
+ans := ans * base;
+a := a+1;
+end loop;
+dbms_output.put_line('ans is:'||ans);
+end;
+/
+
+
+a. ans is:8
+b. ans is:6
+c. compilation error
+d. ans is:4
+
+ 
+
+9.
+declare 
+marks number ;
+begin 
+if marks >= 75 then
+dbms_output.put_line('you have passed with '||marks||' marks');
+elsif marks<= 74 and marks >= 50 then
+dbms_output.put_line('have another chance u got '||marks||'marks');
+else
+dbms_output.put_line('brace for impact');
+end if;
+end;
+/
+
+a. brace for impact
+b. you have passed with 75
+c. Compilation error
+d. Exception
+
+ 
+
+10.
+declare
+grade char(1):='A';
+permission varchar2(20);
+begin
+permission:=case
+when grade 'A' then 'excellent'
+when grade in ('B','C') then 'good'
+else'No such grade'
+end;
+dbms_output.put_line('Grade:'|| grade||' '||'permission' ||' '||permission);
+end;
+/
+
+a)will give output Grade:A permission excellent
+b)will give output Grade:B permission good
+c)error
+d)both a & b
+
+ 
+
+

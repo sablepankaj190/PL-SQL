@@ -1,0 +1,40 @@
+declare
+ bonus employee.salary%TYPE default '0';
+ sal number;
+ total number;
+ notAssignedException exception;
+begin
+ select salary into sal from employee where id = 4;
+ if sal<50000 and sal > 0 then
+ bonus := (sal * 10)/100;
+ dbms_output.put_line('Bonus is:'||bonus);
+ total := sal + bonus;
+ dbms_output.put_line('Salary is:'||total);
+ 
+ 
+ elsif sal>50000 and sal <75000 then
+ bonus := (sal * 20)/100;
+ dbms_output.put_line('Bonus is:'||bonus);
+ total := sal + bonus;
+ dbms_output.put_line('Salary is:'|| total);
+
+
+ elsif sal >= 75000 then
+ bonus := (sal * 20)/100;
+ dbms_output.put_line('Bonus is:'|| bonus);
+ total := sal + bonus;
+ dbms_output.put_line('Salary is:'|| total);
+ 
+ elsif sal = null then
+ dbms_output.put_line('value is not assigned.'); 
+
+ elsif sal = 0 then
+  raise notAssignedException;
+
+ end if;
+ exception
+   when notAssignedException then
+   dbms_output.put_line('The data is empty, salary is not assigned.');
+end;
+/
+    
